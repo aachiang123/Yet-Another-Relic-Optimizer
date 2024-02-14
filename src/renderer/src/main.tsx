@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Index />,
+        element: <Index/>,
       },
       {
         path: "/characters",
@@ -33,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "/relics/:id",
         lazy: () => import("./routes/RelicView"),
+      },
+      {
+        path: "/lightcones",
+        lazy: () => import("./routes/LightCones"),
+      },
+      {
+        path: "/lightcones/:id",
+        lazy: () => import("./routes/LightConeView"),
       },
     ],
   },

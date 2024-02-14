@@ -1,29 +1,32 @@
-import { Link } from "react-router-dom"
-import relic_data from "../assets/StarRailRes/index_new/en/relic_sets.json"
-const relics = Object.entries(relic_data)
-
-function getRelicIcon(name: string): string {
-  const imgURL = new URL(`../assets/StarRailRes/${name}`, import.meta.url).href
-  return imgURL
-}
+import GridList from "@renderer/components/GridList"
+import { relicData } from "./Data"
+import Search from "@renderer/components/Search"
+import { useState } from "react"
 
 function Relics(): JSX.Element {
-  const relic_list = relics.map(relic =>
-    <Link to={relic[0]}>
-    <div className="card w-25 bg-base-100 shadow-xl image-full">
-      <figure><img src={getRelicIcon(relic[1].icon)}></img></figure>
-      <div className="card-body">
-        <h2 className="card-title justify-center content-end">{relic[1].name}</h2>
-      </div>
-    </div>
-    </Link>
-  )
+  const [search, setSearch] = useState("")
+
+
+  function handleSearch(e) {
+    setSearch(e.target.value)
+  }
+
   return (
-    <div className="grid grid-cols-6 gap-8 mx-8 my-8">
-      {relic_list}
+    <div className="flex flex-col">
+      <Search
+        searchString={search}
+        handleSearch={handleSearch}
+
+      />
+      <GridList
+        type="icon"
+        data={relicData}
+        search={search}
+        width="w-30"
+        height="h-30"
+      />
     </div>
   )
 }
 
-export default Relics
-export {Relics as Component}
+export { Relics as Component }

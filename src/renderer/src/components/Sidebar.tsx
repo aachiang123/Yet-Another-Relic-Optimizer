@@ -8,6 +8,7 @@ function Sidebar(): JSX.Element {
                 {/* Sidebar content here */}
                 <li><NavLink to={"characters"}>Character View</NavLink></li>
                 <li><NavLink to={"relics"}>Relic View</NavLink></li>
+                <li><NavLink to={"lightcones"}>LightCone View</NavLink></li>
                 
             </ul>
         </div>

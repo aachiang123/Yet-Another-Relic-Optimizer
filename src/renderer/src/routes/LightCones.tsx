@@ -1,10 +1,10 @@
 import GridList from "@renderer/components/GridList"
-import { characterData, pathData, elementData } from "./Data"
+import { lightconeData, pathData } from "./Data"
 import Search from "@renderer/components/Search"
-import Filter from "@renderer/components/Filter"
 import { useState } from "react"
+import Filter from "@renderer/components/Filter"
 
-function Characters(): JSX.Element {
+function LightCones(): JSX.Element {
     const [search, setSearch] = useState("")
     const [filterSet, setFilters] = useState(new Set<String>())
 
@@ -25,6 +25,7 @@ function Characters(): JSX.Element {
 
     return (
         <div className="flex flex-col">
+
             <div className="flex flex-row">
                 <Filter
                     filters={pathData}
@@ -34,16 +35,15 @@ function Characters(): JSX.Element {
                     searchString={search}
                     handleSearch={handleSearch}
                 />
-
             </div>
             <GridList
                 type="icon"
-                data={characterData}
-                filters={filterSet}
+                data={lightconeData}
                 search={search}
+                filters={filterSet}
             />
         </div>
     )
 }
 
-export { Characters as Component }
+export { LightCones as Component }

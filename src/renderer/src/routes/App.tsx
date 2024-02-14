@@ -11,7 +11,6 @@ function handleLoading(state: string): JSX.Element {
   }
 }
 function App(): JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
   const navigation = useNavigation();
 
   return (
@@ -21,7 +20,7 @@ function App(): JSX.Element {
         <input id="main-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {handleLoading(navigation.state)}
-          <Footer />
+          <Footer/>
         </div>
         <Sidebar></Sidebar>
       </div>

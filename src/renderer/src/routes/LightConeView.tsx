@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom"
 import { getStarRailImg } from "@renderer/components/GridList";
-import { relicData } from "./Data";
+import { lightconeData } from "./Data";
 
-function Relic(): JSX.Element {
+function LightCone(): JSX.Element {
     const { id } = useParams() as {id: string}
     const relic_portrait = <div className="w-1/2">
-        <figure><img className="" src={getStarRailImg(relicData[id].icon, "icon")}></img></figure>
+        <figure><img className="" src={getStarRailImg(lightconeData[id].icon, "icon")}></img></figure>
     </div>
 
     return (
@@ -15,4 +15,4 @@ function Relic(): JSX.Element {
     )
 }
 
-export { Relic as Component }
+export { LightCone as Component }

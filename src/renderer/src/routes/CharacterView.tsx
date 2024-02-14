@@ -1,27 +1,38 @@
 import { useParams } from "react-router-dom"
-import character_data from "../assets/StarRailRes/index_new/en/characters.json"
+import { getStarRailImg } from "@renderer/components/GridList";
+import { useState } from "react";
+import { characterData, promotionData } from "./Data";
 
-type Params = {
-    id: string;
-}
-function getCharPortrait(name: string): string {
-    const imgURL = new URL(`../assets/StarRailRes/${name}`, import.meta.url).href
-    return imgURL
-}
+function calculateStat(promotion, stat: string, level): JSX.Element {
+    return <p>{stat}: {promotion[stat]["base"] + (promotion[stat]["step"] * (level - 1))}</p>
 
+}
 function Character(): JSX.Element {
+    const [level, setLevel] = useState(1)
+    const { id } = useParams() as {id: string}
+    const character = characterData[id]
+    const index = level > 10 ? Math.floor((level-11)/10) : 0
+    const promotion = promotionData[id]["values"][index]
 
-    const { id } = useParams<keyof Params>() as Params
-    const character_portrait = <div className="w-1/2">
-        <figure><img className="" src={getCharPortrait(character_data[id].portrait)}></img></figure>
-    </div>
+    function handleRange(e) {
+        setLevel(e.target.value)
+    }
 
     return (
-        <div className="mx-8 my-8">
-            {character_portrait}
+        <div className="flex w-11/12 mx-8 my-8">
+            <div className="w-1/2">
+                <figure><img className="" src={getStarRailImg(character.portrait, "portrait")}></img></figure>
+            </div>
+            <div className="w-1/2">
+                <input type="range" min={1} max="80" className="range" value={level} onChange={handleRange}/>
+                <p>{level}</p>
+                {calculateStat(promotion, "hp", level)}
+                {calculateStat(promotion, "atk", level)}
+                {calculateStat(promotion, "def", level)}
+            </div>
         </div>
     )
 }
 
 export default Character
-export {Character as Component}
+export { Character as Component }
