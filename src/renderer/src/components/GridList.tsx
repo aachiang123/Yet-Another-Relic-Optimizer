@@ -1,11 +1,11 @@
+import { useFilter } from "@renderer/contexts/FilterContext"
+import { useSearch } from "@renderer/contexts/SearchContext"
 import Fuse from "fuse.js"
 import { Link } from "react-router-dom"
 
 type CardProps = {
     type: string
     data
-    search: string
-    filters?: Set<String>
     width?: string
     height?: string
 }
@@ -76,9 +76,11 @@ function getFilterList(data, filters) {
     )
 }
 
-function GridList({ type, data, search, filters, width = "w-40", height = "h-56" }: CardProps): JSX.Element {
+function GridList({ type, data, width = "w-40", height = "h-56" }: CardProps): JSX.Element {
+    const search = useSearch()
+    const filter = useFilter()
     const searchList = getSearchList(Object.entries(data), search)
-    const filterList = getFilterList(searchList, filters)
+    const filterList = getFilterList(searchList, filter)
     const cardList = getCardList(filterList, type, width, height)
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mx-8">

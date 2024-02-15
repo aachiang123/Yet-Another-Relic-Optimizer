@@ -1,17 +1,14 @@
-import { ChangeEventHandler } from "react"
+import { useSearch, useSearchDispatch } from "@renderer/contexts/SearchContext"
 
-type SearchProps = {
-    searchString: string
-    handleSearch: ChangeEventHandler
-}
-
-function Search({ searchString, handleSearch }: SearchProps): JSX.Element {
+function Search(): JSX.Element {
+    const search = useSearch()
+    const dispatch = useSearchDispatch()
     return <input
         type="text"
         placeholder="Search here"
         className="input input-bordered mx-auto my-8 w-1/2 max-w-xs"
-        value={searchString}
-        onChange={handleSearch}
+        value={search}
+        onChange={e => dispatch({type: "changed", text: e.target.value})}
     />
 }
 

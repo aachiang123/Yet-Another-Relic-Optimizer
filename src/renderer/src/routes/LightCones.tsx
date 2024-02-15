@@ -3,6 +3,8 @@ import { lightconeData, pathData } from "./Data"
 import Search from "@renderer/components/Search"
 import { useState } from "react"
 import Filter from "@renderer/components/Filter"
+import { SearchProvider } from "@renderer/contexts/SearchContext"
+import { FilterProvider } from "@renderer/contexts/FilterContext"
 
 function LightCones(): JSX.Element {
     const [search, setSearch] = useState("")
@@ -25,23 +27,20 @@ function LightCones(): JSX.Element {
 
     return (
         <div className="flex flex-col">
-
-            <div className="flex flex-row">
-                <Filter
-                    filters={pathData}
-                    handleFilters={handleFilters}
-                />
-                <Search
-                    searchString={search}
-                    handleSearch={handleSearch}
-                />
-            </div>
-            <GridList
-                type="icon"
-                data={lightconeData}
-                search={search}
-                filters={filterSet}
-            />
+            <FilterProvider>
+                <SearchProvider>
+                    <div className="flex flex-row">
+                        <Filter
+                            filters={pathData}
+                        />
+                        <Search />
+                    </div>
+                    <GridList
+                        type="icon"
+                        data={lightconeData}
+                    />
+                </SearchProvider>
+            </FilterProvider>
         </div>
     )
 }

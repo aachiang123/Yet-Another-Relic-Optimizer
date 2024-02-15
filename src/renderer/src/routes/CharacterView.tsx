@@ -24,6 +24,7 @@ function Character(): JSX.Element {
                 <figure><img className="" src={getStarRailImg(character.portrait, "portrait")}></img></figure>
             </div>
             <div className="w-1/2">
+                <p></p>
                 <input type="range" min={1} max="80" className="range" value={level} onChange={handleRange}/>
                 <p>{level}</p>
                 {calculateStat(promotion, "hp", level)}
