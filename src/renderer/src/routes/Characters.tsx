@@ -16,6 +16,7 @@ function Characters(): JSX.Element {
                     <div className="flex flex-row">
                         <Filter
                             filters={pathData}
+                            accessor={e => e[1]["path"]}
                         />
                         <Search />
 

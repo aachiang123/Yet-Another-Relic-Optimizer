@@ -68,11 +68,12 @@ function getSearchList(data, search) {
 }
 
 function getFilterList(data, filters) {
-    if (!filters) {
+    console.log(filters)
+    if (!filters.set) {
         return data
     }
     return data.filter(element =>
-        !filters.has(element[1]["path"])
+        !filters.set.has(filters.accessor(element))
     )
 }
 

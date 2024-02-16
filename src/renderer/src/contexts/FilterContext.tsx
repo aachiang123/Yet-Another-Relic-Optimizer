@@ -24,17 +24,28 @@ export function useFilterDispatch() {
 }
 
 function filterReducer(filter, action) {
-    const newSet = new Set(filter)
+    console.log(filter)
+    const newFilter = {
+        ...filter,
+        set: new Set(filter.set)
+    }
     switch (action.type) {
         case 'add': {
-            newSet.add(action.id)
-            return newSet
+            newFilter.set.add(action.id)
+            return newFilter
         }
         case 'delete': {
-            newSet.delete(action.id)
-            return newSet
+            newFilter.set.delete(action.id)
+            return newFilter
+        }
+        case 'method': {
+            newFilter.accessor = action.accessor
+            return newFilter
         }
     }
-    return newSet
+    return newFilter
 }
-const initialFilter = new Set<String>()
+const initialFilter = {
+    set: new Set<String>(),
+    accessor: () => { }
+}
