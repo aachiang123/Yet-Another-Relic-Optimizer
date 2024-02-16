@@ -8,5 +8,19 @@ import elementData from "../assets/StarRailRes/index_min/en/elements.json"
 import mainStatData from "../assets/StarRailRes/index_min/en/relic_main_affixes.json"
 import subStatData from "../assets/StarRailRes/index_min/en/relic_sub_affixes.json"
 import propertyData from "../assets/StarRailRes/index_min/en/properties.json"
+import exampleAccountData from "../assets/example_account.json"
 
-export { characterData , relicData, relicSetData , promotionData , lightconeData, pathData, elementData, mainStatData , subStatData, propertyData}
+export { 
+    characterData , 
+    relicData, 
+    relicSetData , 
+    promotionData , 
+    lightconeData, 
+    pathData, 
+    elementData, 
+    mainStatData , 
+    subStatData, 
+    propertyData,
+    exampleAccountData,
+}
+
