@@ -1,4 +1,3 @@
-import reactImg from "../../../../resources/icon.png"
 import { getStarRailImg } from "./GridList"
 
 function getStatRow(affix) {
